@@ -309,7 +309,8 @@ class DirectBufferedInput : public BufferedInput {
     bool canPreload() const {
       static int maxAttempt = 1000;
       static int sleepMs = 500;
-      if (!asyncThreadCtx->allowPreload() || prefetchMemoryPercent_ == 0) {
+      if (load->state() != DirectCoalescedLoad::State::kPlanned ||
+          prefetchMemoryPercent_ == 0 || !asyncThreadCtx->allowPreload()) {
         return false;
       }
       for (auto attempt = 1; attempt <= maxAttempt; ++attempt) {
