@@ -72,8 +72,7 @@ class ParquetTpchTest : public testing::Test {
     bytedance::bolt::parquet::registerParquetWriterFactory();
 
     auto hiveConnector =
-        connector::getConnectorFactory(
-            connector::hive::HiveConnectorFactory::kHiveConnectorName)
+        connector::getConnectorFactory(connector::kHiveConnectorName)
             ->newConnector(
                 kHiveConnectorId,
                 std::make_shared<config::ConfigBase>(
@@ -81,8 +80,7 @@ class ParquetTpchTest : public testing::Test {
     connector::registerConnector(hiveConnector);
 
     auto tpchConnector =
-        connector::getConnectorFactory(
-            connector::tpch::TpchConnectorFactory::kTpchConnectorName)
+        connector::getConnectorFactory(connector::kTpchConnectorName)
             ->newConnector(
                 kBoltTpchConnectorId,
                 std::make_shared<config::ConfigBase>(
@@ -119,8 +117,8 @@ class ParquetTpchTest : public testing::Test {
               .tpchTableScan(
                   table, std::move(columnNames), 0.01, kBoltTpchConnectorId)
               .planNode();
-      auto split =
-          exec::Split(std::make_shared<connector::tpch::TpchConnectorSplit>(
+      auto split = exec::Split(
+          std::make_shared<connector::tpch::TpchConnectorSplit>(
               kBoltTpchConnectorId, 1, 0));
 
       auto rows =

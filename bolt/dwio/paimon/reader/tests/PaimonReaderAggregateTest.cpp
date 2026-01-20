@@ -46,6 +46,7 @@
 
 #include <folly/init/Init.h>
 #include <algorithm>
+
 using namespace bytedance::bolt;
 // using exec::test::HiveConnectorTestBase;
 using namespace bytedance::bolt;
@@ -68,8 +69,7 @@ class PaimonReaderAggregateTest : public testing::Test,
     leafPool_ = rootPool_->addLeafChild("ParquetTests");
 
     auto hiveConnector =
-        connector::getConnectorFactory(
-            connector::hive::HiveConnectorFactory::kHiveConnectorName)
+        connector::getConnectorFactory(connector::kHiveConnectorName)
             ->newConnector(
                 kHiveConnectorId,
                 std::make_shared<config::ConfigBase>(

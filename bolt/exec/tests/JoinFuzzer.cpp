@@ -205,7 +205,7 @@ JoinFuzzer::JoinFuzzer(size_t initialSeed)
   filesystems::registerLocalFileSystem();
   auto hiveConnector =
       connector::getConnectorFactory(
-          connector::hive::HiveConnectorFactory::kHiveConnectorName)
+          connector::kHiveConnectorName)
           ->newConnector(kHiveConnectorId, std::make_shared<core::MemConfig>());
   connector::registerConnector(hiveConnector);
 

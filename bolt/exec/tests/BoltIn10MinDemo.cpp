@@ -64,7 +64,7 @@ class BoltIn10MinDemo : public VectorTestBase {
     // Register TPC-H connector.
     auto tpchConnector =
         connector::getConnectorFactory(
-            connector::tpch::TpchConnectorFactory::kTpchConnectorName)
+            connector::kTpchConnectorName)
             ->newConnector(
                 kTpchConnectorId,
                 std::make_shared<config::ConfigBase>(

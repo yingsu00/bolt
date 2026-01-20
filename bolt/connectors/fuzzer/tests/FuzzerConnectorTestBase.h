@@ -31,6 +31,7 @@
 #include "bolt/connectors/fuzzer/FuzzerConnector.h"
 #include "bolt/exec/tests/utils/OperatorTestBase.h"
 #include "bolt/vector/fuzzer/VectorFuzzer.h"
+
 namespace bytedance::bolt::connector::fuzzer::test {
 
 class FuzzerConnectorTestBase : public exec::test::OperatorTestBase {

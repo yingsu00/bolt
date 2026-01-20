@@ -70,7 +70,7 @@ class PaimonReaderPartialUpdateTest
 
     auto hiveConnector =
         connector::getConnectorFactory(
-            connector::hive::HiveConnectorFactory::kHiveConnectorName)
+            connector::kHiveConnectorName)
             ->newConnector(
                 kHiveConnectorId,
                 std::make_shared<config::ConfigBase>(

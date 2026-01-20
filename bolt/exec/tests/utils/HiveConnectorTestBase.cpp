@@ -47,7 +47,7 @@ void HiveConnectorTestBase::SetUp() {
       bytedance::bolt::connector::hive::HiveConnectorFactory>();
   auto hiveConnector =
       connector::getConnectorFactory(
-          connector::hive::HiveConnectorFactory::kHiveConnectorName)
+          connector::kHiveConnectorName)
           ->newConnector(
               kHiveConnectorId,
               std::make_shared<config::ConfigBase>(
@@ -69,7 +69,7 @@ void HiveConnectorTestBase::resetHiveConnector(
   connector::unregisterConnector(kHiveConnectorId);
   auto hiveConnector =
       connector::getConnectorFactory(
-          connector::hive::HiveConnectorFactory::kHiveConnectorName)
+          connector::kHiveConnectorName)
           ->newConnector(kHiveConnectorId, config, ioExecutor_.get());
   connector::registerConnector(hiveConnector);
 }
