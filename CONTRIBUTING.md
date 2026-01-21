@@ -53,7 +53,7 @@ Bolt uses Conan for dependency management and a Makefile to drive its build and 
 - **Dependency Manager**: Conan 2.
 
 
-### One-Click Script (Recommended)
+### Setup Development Environment On Linux
 
 Run the following script to check your compiler, install Conan, configure its profile, and import dependency recipes into your local cache:
 
@@ -71,6 +71,42 @@ This script will:
 
 
 **Note**: The first-time build will compile dependencies from source and cache them, which can be time-consuming. You can set up your own Conan remote to speed up builds.
+
+
+### Setup Development Environment on MacOS
+
+This guide outlines the steps to compile and build Bolt directly on macOS.
+You can follow the following steps
+1. Install Xcode Command Line Tools
+
+```Bash
+xcode-select --install
+```
+2. Install Conan and Pydot
+
+```Bash
+pip install conan
+pip install pydot
+```
+
+3. Run the provided script to install Bolt's specific dependencies.
+
+```Bash
+scripts/install-bolt-deps.sh
+```
+
+4. Install CMake
+   We recommend using CMake version 3.25 or higher. Not using CMake 4.0 or higher may cause some third-party dependencies build failure.
+   Download the macOS installer (.dmg) directly from the official website and install it.
+* Download Link: https://cmake.org/download/
+  Note: After installation, ensure the cmake command is available in your terminal path. You may need to follow the instructions in the installer to add it to your system PATH.
+
+5. Configure Conan Profile
+   Detect and generate the default Conan profile for your machine.
+
+```bash
+conan profile detect
+```
 
 ## Fork and PR Workflow
 
@@ -121,48 +157,6 @@ make release_spark
 
 ```Bash
 make release_spark BUILD_VERSION=main
-```
-
-### Building Bolt on macOS
-
-This guide outlines the steps to compile and build Bolt directly on macOS.
-You can follow the following steps
-1. Install Xcode Command Line Tools
-
-```Bash
-xcode-select --install
-```
-2. Install Conan and Pydot
-
-```Bash
-pip install conan
-pip install pydot
-```
-
-3. Run the provided script to install Bolt's specific dependencies.
-
-```Bash
-scripts/install-bolt-deps.sh
-```
-
-4. Install CMake
-We recommend using CMake version 3.25 or higher. Not using CMake 4.0 or higher may cause some third-party dependencies build failure.
-Download the macOS installer (.dmg) directly from the official website and install it.
-* Download Link: https://cmake.org/download/
-Note: After installation, ensure the cmake command is available in your terminal path. You may need to follow the instructions in the installer to add it to your system PATH.
-
-5. Configure Conan Profile
-Detect and generate the default Conan profile for your machine.
-
-```bash
-conan profile detect
-```
-
-6. Build the Project
-Finally, compile the project. You can use `make release` for a release build or substitute it with other make targets as needed.
-
-```bash
-make release
 ```
 
 
